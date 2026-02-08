@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Your Cart</h1>
+    <nav>
+      <a href="index.html">🏠Home</a>
+      <a href="cart.html">🛒Cart (<span id="cart-count">0</span>)</a>
+    </nav>
+  </header>
+
+  <main>
+    <ul id="cart-items"></ul>
+    <div class="checkout-container">
+      <br><br><br>
+      <br><br><br>
+      <br><br><br>
+      <br><br><br>
+      <button onclick="checkout()">💳Proceed to Checkout</button>
+      <button onclick="clearCart()">Clear Cart</button>
+    </div>
+  </main>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function renderCart() {
+      const cartItems = document.getElementById("cart-items");
+      cartItems.innerHTML = "";
+      cart.forEach((item, index) => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <div class="cart-item">
+            <img src="${item.image}" alt="${item.name}">
+            <div class="cart-info">
+              <h4>${item.name}</h4>
+              <p>$${item.price}</p>
+            </div>
+            <button onclick="removeFromCart(${index})">Remove</button>
+          </div>
+        `;
+        cartItems.appendChild(li);
+      });
+      document.getElementById("cart-count").innerText = cart.length;
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+    }
+
+    function clearCart() {
+      cart = [];
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+    }
+
+    function checkout() {
+      if(cart.length === 0) {
+        alert("Your cart is empty!");
+      } else {
+        alert("Checkout functionality coming soon!");
+      }
+    }
+
+    renderCart();
+  </script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 const products = [
-  { id: 1, name: "T-Shirt", price: 29, image: "https://images.pexels.com/photos/32963962/pexels-photo-32963962.jpeg" },
+  { id: 1, name: "T-Shirt", price: 29, image: "url(https://images.pexels.com/photos/32963962/pexels-photo-32963962.jpeg)" },
   { id: 2, name: "Earrings", price: 49, image: "images/earrings.jpg" },
   { id: 3, name: "Sneakers", price: 69, image: "images/sneakers.jpg"},
    { id: 4, name: "Laptop", price: 1999, image: "images/laptop.jpg"},
